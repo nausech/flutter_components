@@ -10,6 +10,7 @@ class SliderScreen extends StatefulWidget {
 
 class _SliderScreenState extends State<SliderScreen> {
   double _sliderValue = 100;
+  bool _sliderEnble = true;
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +27,43 @@ class _SliderScreenState extends State<SliderScreen> {
               activeColor: AppTheme.primary,
               inactiveColor: Colors.amber,
               value: _sliderValue, 
-              onChanged: (value) {
+              onChanged: _sliderEnble 
+              ? (value) {
                 _sliderValue = value;
-                setState(() {
-                  
-                });
+                setState(() { });
               }
+              : null
+            ),
+            // Checkbox(
+            //   value: _sliderEnble, 
+            //   onChanged: (value){
+            //     _sliderEnble = value ?? true;
+            //     setState(() {
+                  
+            //     });
+            //   }
+            // ),
+            CheckboxListTile(
+              activeColor: AppTheme.primary,
+              title: const  Text('Hablitar slider'),
+              value: _sliderEnble, 
+              onChanged: (value) => setState(() {
+                _sliderEnble = value ?? true;
+              })
+            ),
+            // Switch(
+            //   value: _sliderEnble, 
+            //   onChanged: (value) => setState(() {
+            //     _sliderEnble = value;
+            //   })
+            // ),
+            SwitchListTile.adaptive(
+              activeColor: AppTheme.primary,
+              title: const  Text('Hablitar slider'),
+              value: _sliderEnble, 
+              onChanged: (value) => setState(() {
+                _sliderEnble = value;
+              })
             ),
             Image(
               image: const NetworkImage('https://es.web.img3.acsta.net/pictures/18/10/31/17/34/2348073.jpg'),
